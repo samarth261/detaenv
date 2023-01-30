@@ -2,7 +2,8 @@ FROM ubuntu:22.04
 
 RUN apt-get update
 RUN apt-get install -y curl sudo vim htop ssh net-tools openssl unzip tree
-RUN apt-get install -y npm
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
 
 ARG username
 ARG userid
@@ -31,7 +32,7 @@ COPY "id_rsa.pub" "/home/${username}/.ssh/authorized_keys"
 WORKDIR /home/${username}
 RUN curl -fsSL https://get.deta.dev/space-cli.sh | sh
 RUN echo "export PATH=\"/home/samarth/.detaspace/bin:$PATH\"" >> /home/${username}/.bashrc
-COPY space_tokens /home/${username}/.detaspace/space_token
+COPY space_tokens /home/${username}/.detaspace/space_tokens
 
 EXPOSE 22
 WORKDIR /home/${username}/.ssh
