@@ -31,7 +31,7 @@ COPY "id_rsa.pub" "/home/${username}/.ssh/authorized_keys"
 # Setup space cli
 WORKDIR /home/${username}
 RUN curl -fsSL https://get.deta.dev/space-cli.sh | sh
-RUN echo "export PATH=\"/home/samarth/.detaspace/bin:$PATH\"" >> /home/${username}/.bashrc
+RUN echo "export PATH=\"/home/${username}/.detaspace/bin:$PATH\"" >> /home/${username}/.bashrc
 COPY space_tokens /home/${username}/.detaspace/space_tokens
 
 EXPOSE 22
